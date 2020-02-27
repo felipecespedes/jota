@@ -8,6 +8,9 @@
 <body>
   <div id="app">
     Hello from {{ framework }}
+    <ul>
+      <li>{{ legend }}</li>
+    </ul>
   </div>
   <script src="../src/jota.core.js"></script>
   <script src="../src/jota.templates.js"></script>
@@ -17,10 +20,13 @@
       el: '#app',
       props: {
         framework: 'Jota',
+        legend: '👋',
       },
       mounted: (props, updateProps) => {
         setTimeout(() => {
-          updateProps({ framework: ':)' });
+          updateProps({
+            legend: 'Your new favorite framework! 😁'
+          });
         }, 2000);
       }
     });
