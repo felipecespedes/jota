@@ -19,11 +19,11 @@
 
   function templates(context) {
     const { element, options } = context;
-    let initialElement = context.initialElement;
     const props = options.props || {};
+    let initialElement = context.initialElement;
     if (!initialElement) {
       initialElement = element.cloneNode(true);
-      Jota.prototype.initialElement = initialElement;
+      context.initialElement = initialElement;
     }
     replaceProps(element, initialElement, props);
   }
