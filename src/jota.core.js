@@ -11,9 +11,6 @@ function Jota(options) {
   const initialize = () => {
     this.options = options || {};
     this.element = document.querySelector(this.options.el);
-    if (this.element) {
-      this.clonedNode = this.element.cloneNode(true);
-    }
   }
 
   const afterInitialize = () => {
