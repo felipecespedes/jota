@@ -11,7 +11,7 @@
   // TODO it should work across all node levels
   function replaceProps(element, initialElement, props) {
     for (key in props) {
-      const regex = new RegExp(`\\{\\s*?${key}\\s*?\\}`, 'gm');
+      const regex = new RegExp(`\\{\\{\\s*?${key}\\s*?\\}\\}`, 'gm');
       const value = props[key];
       element.innerText = initialElement.innerText.replace(regex, value);
     }
