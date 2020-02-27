@@ -22,29 +22,30 @@
     return node.textContent;
   }
 
-  function replacePropsFor(element, props, key) {
-    [].forEach.call(element.childNodes, function(node) {
+  function replacePropsFor(element, initialNode, props) {
+    [].forEach.call(initialNode.childNodes, function(node, index) {
       if (isTextNode(node)) {
-        const regex = new RegExp(`\\{\\{\\s*?${key}\\s*?\\}\\}`, 'gm');
-        const value = props[key];
-        const nodeText = extractText(node);
-        const newTextContent = nodeText.replace(regex, value);
-        node.textContent = newTextContent;
+        let line = extractText(node);
+        for (key in props) {
+          const value = props[key];
+          const regex = new RegExp(`\\{\\{\\s*?${key}\\s*?\\}\\}`, 'gm');
+          line = line.replace(regex, value);
+        }
+        // Validates if the text content has changed and replace it
+        if (element.childNodes[index].textContent !== line) {
+          element.childNodes[index].textContent = line;
+        }
       }
     });
   }
 
   function replaceProps(element, initialElement, props) {
-    const newElement = initialElement.cloneNode(true);
-    const children = getAllChildren(newElement);
-    for (key in props) {
-      replacePropsFor(newElement, props, key);
-      [].forEach.call(children, function(node) {
-        replacePropsFor(node, props, key)
-      });
-    }
-    // TODO find a better way to replace content since this is not the best way to do it
-    element.innerHTML = newElement.innerHTML;
+    const initialElementchildren = getAllChildren(initialElement);
+    const elementChildren = getAllChildren(element);
+    replacePropsFor(element, initialElement, props);
+    [].forEach.call(elementChildren, function(node, index) {
+      replacePropsFor(node, initialElementchildren[index], props)
+    });
   }
 
   function templates(context) {
