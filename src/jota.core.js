@@ -8,6 +8,11 @@
 
 function Jota(options) {
 
+  // validate if Jota was instantiated
+  if (!(this instanceof Jota)) {
+    return new Jota(options);
+  }
+
   const initialize = () => {
     this.options = options || {};
     this.element = document.querySelector(this.options.el);
