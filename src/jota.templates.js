@@ -23,6 +23,10 @@
   }
 
   function replacePropsFor(element, initialNode, props) {
+    if (initialNode == null) {
+      return;
+    };
+
     [].forEach.call(initialNode.childNodes, function(node, index) {
       if (isTextNode(node)) {
         let line = extractText(node);
