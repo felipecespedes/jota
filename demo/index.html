@@ -4,13 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
   <div id="app">
-    Hello from {{ framework }}
-    <ul>
-      <li>{{ legend }}</li>
-    </ul>
+    <div class="container">
+      <div class="row">&nbsp;</div>
+      <div class="row">
+        <div class="col-md">
+          <h1 class="text-center">Welcome to {{ framework }}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+          <p class="text-center"><strong>{{ legend }}</strong></p>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-md text-center">
+          <button class="btn btn-primary">Start</button>
+        </div>
+      </div> -->
+    </div>
   </div>
   <script src="../src/jota.core.js"></script>
   <script src="../src/jota.templates.js"></script>
@@ -25,7 +40,7 @@
       mounted: (props, updateProps) => {
         setTimeout(() => {
           updateProps({
-            legend: 'Your new favorite framework! 😁'
+            legend: 'Your new favorite framework! 🚀'
           });
         }, 2000);
       }
